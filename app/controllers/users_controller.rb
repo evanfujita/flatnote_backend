@@ -15,6 +15,7 @@ class UsersController < ApplicationController
     end
 
     def create
+        # debugger
         user = User.new(user_params)
         user.save
         render json: user
@@ -26,10 +27,20 @@ class UsersController < ApplicationController
         render json: {message: 'deleted'}
     end
 
+    def auth
+        user = User.find_by(username: params[:username])
+        if user
+            render json: user
+        else
+            render json: { error: 'Invalid Username or Password'}
+        end
+    end
+
+
     private
 
     def user_params
-        params.require(:user).permit(:username)
+        params.require(:user).permit(:username, :password, :password_confirmation)
     end
 
 end

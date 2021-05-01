@@ -15,7 +15,7 @@ class NotesController < ApplicationController
     end
 
     def create
-        note = Note.new(note_params)
+        note = Note.new(note_params(:title, :body, :user_id))
         note.save
         render json: note
     end
@@ -26,10 +26,21 @@ class NotesController < ApplicationController
         render json: {message: 'deleted'}
     end
 
+    def edit
+        note = Note.find_by(id: params[:id])
+    end
+
+    def update
+        note = Note.find_by(id: params[:id])
+        # byebug
+        note.update(note_params(:title, :body))
+        render json: note
+    end
+
     private
 
-    def note_params
-        params.require(:note).permit(:title, :body, :user_id)
+    def note_params(*args)
+        params.require(:note).permit(*args)
     end
 
 end
