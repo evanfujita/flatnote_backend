@@ -6,8 +6,12 @@ class UsersController < ApplicationController
     end
 
     def show
-        user = User.find_by(id: params[:id])
-        render json: user
+        
+        if user = User.find_by(id: params[:id])
+            render json: user
+        else
+            render json: {error: 'no user'}
+        end
     end
     
     def new
@@ -15,10 +19,12 @@ class UsersController < ApplicationController
     end
 
     def create
-        # debugger
         user = User.new(user_params)
-        user.save
-        render json: user
+        if user.save
+            render json: user
+        else
+            render json: {error: 'user not created'}
+        end
     end
 
     def destroy
@@ -28,7 +34,7 @@ class UsersController < ApplicationController
     end
 
     def auth
-        user = User.find_by(username: params[:username])
+        user = User.find_by(username: params[:user][:username])
         if user
             render json: user
         else
