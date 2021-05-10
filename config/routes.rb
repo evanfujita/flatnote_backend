@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :tasks
   resources :notes
   resources :users
   post '/login', to: 'users#auth'
