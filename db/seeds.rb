@@ -1,9 +1,9 @@
 User.destroy_all
 Note.destroy_all
 
-user1 = User.create(username: 'evan', password: 'abc', password_digest: 'abc')
-user2 = User.create(username: 'madelinebeck', password: 'abc', password_digest: 'abc')
-user3 = User.create(username: 'winston', password: 'abc', password_digest: 'abc')
+user1 = User.create(username: 'evan', password: 'abc', password_confirmation: 'abc')
+user2 = User.create(username: 'madelinebeck', password: 'abc', password_confirmation: 'abc')
+user3 = User.create(username: 'winston', password: 'abc', password_confirmation: 'abc')
 
 note1 = Note.create(title: 'first', body: 'Hello World', user_id: 1)
 note2 = Note.create(title: 'second', body: 'Hello World Hello World', user_id: 1)
