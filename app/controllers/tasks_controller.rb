@@ -30,9 +30,7 @@ class TasksController < ApplicationController
     end
 
     def update
-        
         task = Task.find_by(id: params[:id])
-        # byebug
         task.update(task_params(:completed))
         render json: task
     end
