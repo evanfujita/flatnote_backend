@@ -32,7 +32,6 @@ class NotesController < ApplicationController
 
     def update
         note = Note.find_by(id: params[:id])
-        # byebug
         note.update(note_params(:title, :body))
         render json: note
     end
